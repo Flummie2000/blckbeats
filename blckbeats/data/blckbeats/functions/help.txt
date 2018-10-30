@@ -1,0 +1,22 @@
+to make blckbeats be able to run more songs follow this info:
+
+-add commands to blckbeats:loop/find (execute if entity @s[tag=songNUMBER.blbt,scores={track.blbt=NUMBER}] run tag @s add play.blbt)
+
+-add commands to blckbeats:loop/score (execute if entity @s[tag=songNUMBER.blbt] run scoreboard players add @s loop.blbt NUMBER
+                                       tag @s remove songNUMBER.blbt)
+
+-add commands to blckbeats:loop/tag (execute if score @s loop.blbt matches PREVIOUS_NUMBER_X2.. run tag @s add songNUMBER.blbt
+                                     execute if score @s loop.blbt matches PREVIOUS_NUMBER_X2.. run scoreboard players remove @s loop.blbt PREVIOUS_NUMBER_X2)
+
+-add commands to blckbeats:loop/toggle (execute if entity @s[scores={loopsong.blbt=NUMBER},tag=songNUMBER.blbt] run tag @s add hastag.blbt
+                                        execute if entity @s[tag=hastag.blbt] run tag @s remove songNUMBER.blbt
+                                        execute if entity @s[scores={loopsong.blbt=NUMBER},tag=!hastag.blbt] run tag @s add songNUMBER.blbt
+                                        tag @s remove hastag.blbt)
+
+-add commands to blckbeats:songs/info (execute if score @s track.blbt matches NUMBER run function blckbeats:songs/infoNUMBER)
+
+-add commands to blckbeats:songs/song (execute if score @s track.blbt matches NUMBER run function blckbeats:songs/songNUMBER)
+
+-copy and rename song and info files in blckbeats:songs and adjust them with new numbers and info (adding and exchanging songs in blckbeats)
+
+-add stopsound to blckbeats:uninstall (stopsound @a voice minecraft:blckbeats.songNUMBER)
